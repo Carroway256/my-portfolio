@@ -1,0 +1,27 @@
+.listElement {
+  position: relative;
+
+  width: 200px;
+
+  line-height: 20px;
+
+  transition: all 1s;
+}
+.listElement:hover {
+  opacity: 100;
+
+  .elementsBorder {
+    transition: all 1s;
+    width: 300px;
+    color: #a78bfa;
+  }
+}
+
+.listElement-selected {
+  opacity: 100;
+  .elementsBorder {
+    transition: all 1s;
+    width: 300px;
+    color: #a78bfa;
+  }
+}

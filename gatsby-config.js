@@ -15,7 +15,12 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
+    "gatsby-plugin-postcss",
     `gatsby-plugin-image`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -37,6 +42,29 @@ module.exports = {
         // theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-plugin-prettier-eslint",
+      options: {
+        prettier: {
+          patterns: [
+            // the pattern "**/*.{js,jsx,ts,tsx}" is not used because we will rely on `eslint --fix`
+            "**/*.{css,scss,less}",
+            "**/*.{json,json5}",
+            "**/*.{graphql}",
+            "**/*.{md,mdx}",
+            "**/*.{html}",
+            "**/*.{yaml,yml}",
+          ],
+        },
+        eslint: {
+          patterns: "**/*.{js,jsx,ts,tsx}",
+          customOptions: {
+            fix: true,
+            cache: true,
+          },
+        },
       },
     },
   ],

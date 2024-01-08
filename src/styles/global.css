@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* .mouse-cursor-gradient-tracking {
+  position: fixed;
+
+  background: linear-gradient(
+    to right,
+    rgb(0, 0, 0) 300px,
+    rgb(11, 11, 29) 100%
+*/
+.mouse-cursor-gradient-tracking {
+  position: relative;
+  background: linear-gradient(
+    to right,
+    rgb(0, 0, 0) 200px,
+    rgb(24, 24, 63) 100%
+  );
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border: none;
+  color: white;
+
+  outline: none;
+  overflow: hidden;
+}
+
+.mouse-cursor-gradient-tracking span {
+  position: relative;
+}
+
+.mouse-cursor-gradient-tracking::before {
+  --size: 0;
+  content: "";
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(
+    circle closest-side,
+    rgb(24, 24, 63),
+    transparent
+  );
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease;
+  opacity: 1;
+}
+
+.mouse-cursor-gradient-tracking:hover::before {
+  --size: 200px;
+}
