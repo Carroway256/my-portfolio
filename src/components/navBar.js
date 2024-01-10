@@ -1,46 +1,38 @@
-import React, { useEffect, useState } from "react"
-import { StaticImage } from "gatsby-plugin-image"
-import "./navBar.scss"
+import React, { useEffect, useState } from 'react';
+import { StaticImage } from 'gatsby-plugin-image';
+import './navBar.scss';
 const NavBar = () => {
-  const [tab, setTab] = useState("about")
+  const [tab, setTab] = useState('about');
   return (
     <div>
+      <NavBarItem name={'about'} onClick={() => setTab('about')} isSelected={tab === 'about'} />
       <NavBarItem
-        name={"about"}
-        onClick={() => setTab("about")}
-        isSelected={tab === "about"}
+        name={'experience'}
+        onClick={() => setTab('experience')}
+        isSelected={tab === 'experience'}
       />
       <NavBarItem
-        name={"experience"}
-        onClick={() => setTab("experience")}
-        isSelected={tab === "experience"}
-      />
-      <NavBarItem
-        name={"portfolio"}
-        onClick={() => setTab("portfolio")}
-        isSelected={tab === "portfolio"}
+        name={'portfolio'}
+        onClick={() => setTab('portfolio')}
+        isSelected={tab === 'portfolio'}
       />
     </div>
-  )
-}
+  );
+};
 const NavBarItem = ({ name, onClick, isSelected }) => {
-  console.log(isSelected)
+  console.log(isSelected);
   return (
     <div
-      className={`flex        listElement ${
-        isSelected ? "listElement-selected" : ""
-      } opacity-50`}
-
-      
+      className={`listElement ${isSelected ? 'listElement-selected' : ''} flex opacity-50`}
       onClick={onClick}
     >
       <div
-        className={`elementsBorder border-b-2 border-white self-center mr-4  w-[20px] ${
-          isSelected ? "w-[300px]" : ""
+        className={`elementsBorder mr-4 w-[20px] self-center border-b-2  border-white ${
+          isSelected ? 'w-[300px]' : ''
         }`}
-      ></div>{" "}
-      <div className="uppercase text-[16px]">{name}</div>
+      ></div>{' '}
+      <div className="text-[16px] uppercase">{name}</div>
     </div>
-  )
-}
-export default NavBar
+  );
+};
+export default NavBar;

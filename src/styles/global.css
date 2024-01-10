@@ -11,12 +11,8 @@
 */
 .mouse-cursor-gradient-tracking {
   position: relative;
-  background: linear-gradient(
-    to right,
-    rgb(0, 0, 0) 200px,
-    rgb(24, 24, 63) 100%
-  );
-  padding: 0.5rem 1rem;
+  background: linear-gradient(to right, rgb(0, 0, 0) 200px, rgb(24, 24, 63) 100%);
+
   font-size: 1.2rem;
   border: none;
   color: white;
@@ -31,22 +27,25 @@
 
 .mouse-cursor-gradient-tracking::before {
   --size: 0;
-  content: "";
+  content: '';
   position: absolute;
   left: var(--x);
   top: var(--y);
   width: var(--size);
   height: var(--size);
-  background: radial-gradient(
-    circle closest-side,
-    rgb(24, 24, 63),
-    transparent
-  );
+  background: radial-gradient(circle closest-side, rgb(24, 24, 63), transparent);
   transform: translate(-50%, -50%);
-  transition: width 0.2s ease, height 0.2s ease;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease;
   opacity: 1;
 }
 
 .mouse-cursor-gradient-tracking:hover::before {
   --size: 200px;
+}
+
+.coppied_message {
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0);
 }

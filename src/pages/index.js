@@ -1,30 +1,31 @@
-import React, { useEffect } from "react"
-import { StaticImage } from "gatsby-plugin-image"
-import NavBar from "../components/navBar"
+import React, { useEffect, useState } from 'react';
+import { StaticImage } from 'gatsby-plugin-image';
+import NavBar from '../components/navBar';
 const IndexPage = () => {
+  const [isCoppied, setIsCoppied] = useState(false);
   useEffect(() => {
-    let btn = document.querySelector(".mouse-cursor-gradient-tracking")
-    btn.addEventListener("mousemove", e => {
-      let x = e.clientX
-      let y = e.clientY
-      btn.style.setProperty("--x", x + "px")
-      btn.style.setProperty("--y", y + "px")
-    })
-  }, [])
+    let btn = document.querySelector('.mouse-cursor-gradient-tracking');
+    btn.addEventListener('mousemove', (e) => {
+      let x = e.clientX;
+      let y = e.clientY;
+      btn.style.setProperty('--x', x + 'px');
+      btn.style.setProperty('--y', y + 'px');
+    });
+  }, []);
   return (
     <div>
-      <div className=" h-[100vh] font-sans w-[100vw] mouse-cursor-gradient-tracking cursor-default  ">
-        <div className="flex items-center gap-10 relative h-full mx-16">
-          <div className=" flex flex-col gap-8  relative">
+      <div className=" mouse-cursor-gradient-tracking cursor-default overflow-auto font-sans">
+        <div className=" mx-16 my-20 flex h-[100vh] items-center gap-32 ">
+          <div className="sticky left-0 top-0 flex flex-col  gap-8 self-start">
             <div className="self-center">
               <StaticImage
                 src="../../static/R2.png"
                 alt="A dinosaur"
-                className="max-w-[100px]   self-center"
-              />{" "}
+                className="max-w-[100px]   "
+              />{' '}
             </div>
             <div className="font-bold">
-              {" "}
+              {' '}
               <div>Ryszard Solecki</div>
               <div>Fullstack Developer</div>
             </div>
@@ -32,7 +33,7 @@ const IndexPage = () => {
             <NavBar />
             <div className="flex gap-4">
               <svg
-                class="w-6 h-6 text-white opacity-50 hover:opacity-100"
+                class="h-6 w-6 text-white opacity-50 hover:opacity-100"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -46,7 +47,7 @@ const IndexPage = () => {
                 <path d="M3 5.012H0V15h3V5.012Z" />
               </svg>
               <svg
-                class="w-6 h-6 text-white opacity-50 hover:opacity-100"
+                class="h-6 w-6 text-white opacity-50 hover:opacity-100"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -59,18 +60,55 @@ const IndexPage = () => {
                 />
               </svg>
             </div>
-            <div className="opacity-50 hover:opacity-100">
-              harrtuck@gmail.com
+            <div>
+              <div
+                className="opacity-50 hover:opacity-100"
+                onClick={() => {
+                  navigator.clipboard.writeText('harrtuck@gmail.com');
+                  setIsCoppied(true),
+                    setInterval(() => {
+                      setIsCoppied(false);
+                    }, 2000);
+                }}
+              >
+                harrtuck@gmail.com
+              </div>{' '}
+              <div
+                className={`mt-2 translate-x-[-300px] text-[15px] ${
+                  isCoppied ? 'coppied_message' : ''
+                }`}
+              >
+                COPPIED TO CLIPBOARD
+              </div>
             </div>
           </div>
-          <div className="text-[50px] relative">
-            {" "}
-            System font, or web-safe font System font, or web-safe font
+          <div className=" ml-auto flex flex-col text-[20px]">
+            <div id="about" className="h-[100vh]">
+              {' '}
+              I started my programming journey with CS50 course from harvard and self learning.
+              After one year i got my first job and I have been working or freelancing ever since
+              which is a bit above 2 years. I will also finish my bachelors degree in computer
+              science in this year
+            </div>{' '}
+            <div id="about" className="h-[100vh]">
+              {' '}
+              I started my programming journey with CS50 course from harvard and self learning.
+              After one year i got my first job and I have been working or freelancing ever since
+              which is a bit above 2 years. I will also finish my bachelors degree in computer
+              science in this year
+            </div>{' '}
+            <div id="about" className="h-[100vh]">
+              {' '}
+              I started my programming journey with CS50 course from harvard and self learning.
+              After one year i got my first job and I have been working or freelancing ever since
+              which is a bit above 2 years. I will also finish my bachelors degree in computer
+              science in this year
+            </div>{' '}
           </div>
-        </div>{" "}
-      </div>
+        </div>
+      </div>{' '}
     </div>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

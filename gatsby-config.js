@@ -15,7 +15,7 @@ module.exports = {
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
-    "gatsby-plugin-postcss",
+    'gatsby-plugin-postcss',
     `gatsby-plugin-image`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -41,25 +41,25 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/R-512.png`, // This path is relative to the root of the site.
       },
     },
     {
-      resolve: "gatsby-plugin-prettier-eslint",
+      resolve: 'gatsby-plugin-prettier-eslint',
       options: {
         prettier: {
           patterns: [
-            // the pattern "**/*.{js,jsx,ts,tsx}" is not used because we will rely on `eslint --fix`
-            "**/*.{css,scss,less}",
-            "**/*.{json,json5}",
-            "**/*.{graphql}",
-            "**/*.{md,mdx}",
-            "**/*.{html}",
-            "**/*.{yaml,yml}",
+            '**/*.{js,jsx,ts,tsx}',
+            '**/*.{css,scss,less}',
+            '**/*.{json,json5}',
+            '**/*.{graphql}',
+            '**/*.{md,mdx}',
+            '**/*.{html}',
+            '**/*.{yaml,yml}',
           ],
         },
         eslint: {
-          patterns: "**/*.{js,jsx,ts,tsx}",
+          patterns: '**/*.{js,jsx,ts,tsx}',
           customOptions: {
             fix: true,
             cache: true,
@@ -68,4 +68,4 @@ module.exports = {
       },
     },
   ],
-}
+};
