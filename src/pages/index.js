@@ -1,48 +1,62 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import NavBar from '../components/navBar';
-import useOnScreen from '../hooks/IsInView';
+import useIsInViewport from '../hooks/IsInView';
 import '../styles/index.css';
 import { navigate } from 'gatsby';
+import Experience from '../components/experience';
+import Portfolio from '../components/portfolio';
 const IndexPage = () => {
   const [isCoppied, setIsCoppied] = useState(false);
-  const [tab, setTab] = useState('');
+  const [tab, setTab] = useState('about');
 
   const aboutRef = useRef(3);
   const experienceRef = useRef(2);
   const portfolioRef = useRef(1);
 
-  const isAboutVisible = useOnScreen(aboutRef);
-  const isExperienceVisible = useOnScreen(experienceRef);
-  const isPortfolioVisible = useOnScreen(portfolioRef);
+  const isAboutVisible = useIsInViewport(aboutRef);
+  const isExperienceVisible = useIsInViewport(experienceRef);
+  const isPortfolioVisible = useIsInViewport(portfolioRef);
 
   useEffect(() => {
     let btn = document.querySelector('.mouse-cursor-gradient-tracking');
     btn.addEventListener('mousemove', (e) => {
-      let x = e.clientX;
+      let x = e.pageX;
       let y = e.pageY;
-      btn.style.setProperty('--y', y + 'px');
+
       if (x > document.body.clientWidth - 100) {
       } else {
         btn.style.setProperty('--x', x + 'px');
       }
+      if (y > document.body.clientHeight - 100) {
+      } else {
+        btn.style.setProperty('--y', y + 'px');
+      }
     });
   }, []);
+  // useEffect(() => {
+  //   console.log('change of exp');
+  //   if (isExperienceVisible === true) setTab('experience');
+  // }, [isExperienceVisible]);
+
+  // useEffect(() => {
+  //   console.log('change of ab');
+  //   if (isAboutVisible === true) setTab('about');
+  // }, [isAboutVisible]);
+
+  // useEffect(() => {
+  //   console.log('change of port');
+  //   if (isPortfolioVisible === true) setTab('portfolio');
+  // }, [isPortfolioVisible]);
+
   useEffect(() => {
-    isAboutVisible && setTab('about');
-  }, [isAboutVisible]);
-  useEffect(() => {
-    isExperienceVisible && setTab('experience');
-  }, [isExperienceVisible]);
-  useEffect(() => {
-    isPortfolioVisible && setTab('portfolio');
-  }, [isPortfolioVisible]);
-  useEffect(() => {
-    console.log(tab);
-    if (tab === 'about') aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
-    if (tab === 'experience') experienceRef.current?.scrollIntoView({ behavior: 'smooth' });
-    if (tab === 'portfolio') portfolioRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [tab]);
+    if (isExperienceVisible === true || (isPortfolioVisible === false && isAboutVisible === false))
+      setTab('experience');
+    if (isPortfolioVisible === true || (isExperienceVisible === false && isAboutVisible === false))
+      setTab('portfolio');
+    if (isAboutVisible === true || (isPortfolioVisible === false && isExperienceVisible === false))
+      setTab('about');
+  }, [isPortfolioVisible, isExperienceVisible, isAboutVisible]);
 
   return (
     <div>
@@ -115,22 +129,22 @@ const IndexPage = () => {
             </div>
           </div>
 
-          <div className=" ml-auto flex flex-col py-40 text-[20px]">
-            <div ref={aboutRef} className="h-[100vh]">
+          <div className=" ml-auto flex flex-col  ">
+            <section id="about" ref={aboutRef} className="py-16">
               {' '}
               I started my programming journey with CS50 course from harvard and self learning.
               After one year i got my first job and I have been working or freelancing ever since
               which is a bit above 2 years. I will also finish my bachelors degree in computer
               science in this year
-            </div>{' '}
-            <div ref={experienceRef} className="h-[100vh]">
+            </section>{' '}
+            <section id="experience" ref={experienceRef} className="py-16">
               {' '}
-              xd
-            </div>{' '}
-            <div ref={portfolioRef} className="h-[100vh]">
+              <Experience />
+            </section>{' '}
+            <section id="portfolio" ref={portfolioRef} className="py-16">
               {' '}
-              wp
-            </div>{' '}
+              <Portfolio />
+            </section>{' '}
           </div>
         </div>
       </div>{' '}
