@@ -3,7 +3,7 @@ import './experience.scss';
 import StackItem from './StackItem.js';
 const Experience = () => {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-12">
       <ExperienceItem
         date={'Oct/2023 - Jan/2024'}
         company={'Freelance Web Developer'}
@@ -15,7 +15,7 @@ const Experience = () => {
           </>
         }
         stack={
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <StackItem techName={'Gatsby.js'} />
             <StackItem techName={'TypeScript'} />
             <StackItem techName={'Scss'} />
@@ -39,7 +39,7 @@ const Experience = () => {
           </>
         }
         stack={
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <StackItem techName={'React.js'} />
             <StackItem techName={'TypeScript'} />
             <StackItem techName={'GraphQL'} />
@@ -58,7 +58,7 @@ const Experience = () => {
           </>
         }
         stack={
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <StackItem techName={'React.js'} />
             <StackItem techName={'TypeScript'} />
             <StackItem techName={'Redux'} />
@@ -77,7 +77,7 @@ const Experience = () => {
           </>
         }
         stack={
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <StackItem techName={'React.js'} />
             <StackItem techName={'TypeScript'} />
             <StackItem techName={'Redux'} />
@@ -93,9 +93,9 @@ export default Experience;
 
 const ExperienceItem = ({ date, company, title, content, stack }) => {
   return (
-    <div className="experience-item  flex gap-4 rounded-xl p-4  hover:shadow-2xl">
-      <div className="w-1/2">{date}</div>
-      <div className="w-1/2">
+    <div className="experience-item flex flex-col gap-4 rounded-xl hover:text-yellow-500  md:flex-row md:p-2">
+      <div className="md:w-1/2">{date}</div>
+      <div className="md:w-1/2">
         <div className="flex  min-w-0 flex-col gap-4">
           <div className="font-bold">{company}</div>
           {title ? <div>{title}</div> : null}

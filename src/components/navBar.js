@@ -22,7 +22,7 @@ const NavBarItem = ({ name, onClick, isSelected }) => {
   return (
     <Link to={`#${name}`} smooth>
       <div
-        className={`listElement ${isSelected ? 'listElement-selected' : ''} flex opacity-50`}
+        className={`listElement ${isSelected ? 'listElement-selected' : ''} flex `}
         onClick={onClick}
       >
         <div
@@ -30,7 +30,7 @@ const NavBarItem = ({ name, onClick, isSelected }) => {
             isSelected ? 'w-[300px]' : ''
           }`}
         ></div>{' '}
-        <div className="text-[16px] uppercase">{name}</div>
+        <div className={`text-[16px] uppercase ${isSelected ? 'text-yellow-500' : ''}`}>{name}</div>
       </div>
     </Link>
   );

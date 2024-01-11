@@ -34,20 +34,6 @@ const IndexPage = () => {
       }
     });
   }, []);
-  // useEffect(() => {
-  //   console.log('change of exp');
-  //   if (isExperienceVisible === true) setTab('experience');
-  // }, [isExperienceVisible]);
-
-  // useEffect(() => {
-  //   console.log('change of ab');
-  //   if (isAboutVisible === true) setTab('about');
-  // }, [isAboutVisible]);
-
-  // useEffect(() => {
-  //   console.log('change of port');
-  //   if (isPortfolioVisible === true) setTab('portfolio');
-  // }, [isPortfolioVisible]);
 
   useEffect(() => {
     if (isExperienceVisible === true || (isPortfolioVisible === false && isAboutVisible === false))
@@ -61,8 +47,8 @@ const IndexPage = () => {
   return (
     <div>
       <div className=" mouse-cursor-gradient-tracking cursor-default  font-sans">
-        <div className=" relative mx-16 flex items-center  gap-32  ">
-          <div className="sticky top-[0] flex h-[100vh] flex-col justify-between gap-8 self-start py-20 2xl:py-60 ">
+        <div className="relative flex flex-col items-center  md:mx-12 md:flex-row md:gap-20 lg:justify-between 2xl:mx-60 2xl:gap-60 ">
+          <div className="top-[0] flex flex-col items-center gap-8 md:sticky md:h-[100vh]  md:w-1/5 md:items-start md:self-start md:py-20 lg:justify-between 2xl:py-60 ">
             <div className="self-center">
               <StaticImage
                 src="../../static/R2.png"
@@ -120,7 +106,7 @@ const IndexPage = () => {
                 harrtuck@gmail.com
               </div>{' '}
               <div
-                className={`mt-2 translate-x-[-300px] text-[15px] ${
+                className={`mt-2 translate-x-[-1000px] text-[15px] ${
                   isCoppied ? 'coppied_message' : ''
                 }`}
               >
@@ -129,20 +115,27 @@ const IndexPage = () => {
             </div>
           </div>
 
-          <div className=" ml-auto flex flex-col  ">
-            <section id="about" ref={aboutRef} className="py-16">
+          <div className="mx-8 flex flex-col py-8 md:w-2/3">
+            <section id="about" ref={aboutRef} className="py-4 md:py-16">
               {' '}
+              <div className="sticky top-0 z-10 m-2 mx-[-2rem] py-2 text-center font-bold text-yellow-500 backdrop-blur-xl md:hidden">
+                ABOUT
+              </div>
               I started my programming journey with CS50 course from harvard and self learning.
               After one year i got my first job and I have been working or freelancing ever since
               which is a bit above 2 years. I will also finish my bachelors degree in computer
               science in this year
             </section>{' '}
-            <section id="experience" ref={experienceRef} className="py-16">
-              {' '}
+            <section id="experience" ref={experienceRef} className="py-4 md:py-16">
+              <div className="sticky top-0 z-10 m-2 mx-[-2rem] py-2 text-center font-bold text-yellow-500 backdrop-blur-xl md:hidden">
+                EXPERIENCE
+              </div>
               <Experience />
             </section>{' '}
-            <section id="portfolio" ref={portfolioRef} className="py-16">
-              {' '}
+            <section id="portfolio" ref={portfolioRef} className="py-4 md:py-16">
+              <div className="sticky top-0 z-10 m-2 mx-[-2rem] py-2 text-center font-bold text-yellow-500 backdrop-blur-xl md:hidden">
+                PORTFOLIO
+              </div>{' '}
               <Portfolio />
             </section>{' '}
           </div>
