@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
+import React from 'react';
 import './navBar.scss';
-const NavBar = () => {
-  const [tab, setTab] = useState('about');
+const NavBar = ({ tab, setTab }) => {
   return (
     <div>
       <NavBarItem name={'about'} onClick={() => setTab('about')} isSelected={tab === 'about'} />
@@ -20,7 +18,6 @@ const NavBar = () => {
   );
 };
 const NavBarItem = ({ name, onClick, isSelected }) => {
-  console.log(isSelected);
   return (
     <div
       className={`listElement ${isSelected ? 'listElement-selected' : ''} flex opacity-50`}

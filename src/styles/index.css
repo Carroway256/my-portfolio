@@ -1,0 +1,14 @@
+.nav {
+  width: 20%;
+  height: 100px;
+  top: 0; /* this is required for "sticky" to work */
+  position: sticky;
+  background: lightblue;
+  padding: 1rem;
+}
+.main2 {
+  height: 3000px; /* cause scroll */
+  background: lightpink;
+  flex-grow: 1;
+  padding: 1rem;
+}

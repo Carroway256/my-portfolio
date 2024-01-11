@@ -1,14 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* .mouse-cursor-gradient-tracking {
-  position: fixed;
+::-webkit-scrollbar {
+  width: 10px;
+}
 
-  background: linear-gradient(
-    to right,
-    rgb(0, 0, 0) 300px,
-    rgb(11, 11, 29) 100%
-*/
+/* Track */
+::-webkit-scrollbar-track {
+  background: #949393;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6b6b6b;
+  border-radius: 35px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+  border-radius: 35px;
+}
 .mouse-cursor-gradient-tracking {
   position: relative;
   background: linear-gradient(to right, rgb(0, 0, 0) 200px, rgb(24, 24, 63) 100%);
@@ -18,7 +30,6 @@
   color: white;
 
   outline: none;
-  overflow: hidden;
 }
 
 .mouse-cursor-gradient-tracking span {

@@ -1,22 +1,54 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import NavBar from '../components/navBar';
+import useOnScreen from '../hooks/IsInView';
+import '../styles/index.css';
+import { navigate } from 'gatsby';
 const IndexPage = () => {
   const [isCoppied, setIsCoppied] = useState(false);
+  const [tab, setTab] = useState('');
+
+  const aboutRef = useRef(3);
+  const experienceRef = useRef(2);
+  const portfolioRef = useRef(1);
+
+  const isAboutVisible = useOnScreen(aboutRef);
+  const isExperienceVisible = useOnScreen(experienceRef);
+  const isPortfolioVisible = useOnScreen(portfolioRef);
+
   useEffect(() => {
     let btn = document.querySelector('.mouse-cursor-gradient-tracking');
     btn.addEventListener('mousemove', (e) => {
       let x = e.clientX;
-      let y = e.clientY;
-      btn.style.setProperty('--x', x + 'px');
+      let y = e.pageY;
       btn.style.setProperty('--y', y + 'px');
+      if (x > document.body.clientWidth - 100) {
+      } else {
+        btn.style.setProperty('--x', x + 'px');
+      }
     });
   }, []);
+  useEffect(() => {
+    isAboutVisible && setTab('about');
+  }, [isAboutVisible]);
+  useEffect(() => {
+    isExperienceVisible && setTab('experience');
+  }, [isExperienceVisible]);
+  useEffect(() => {
+    isPortfolioVisible && setTab('portfolio');
+  }, [isPortfolioVisible]);
+  useEffect(() => {
+    console.log(tab);
+    if (tab === 'about') aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (tab === 'experience') experienceRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (tab === 'portfolio') portfolioRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [tab]);
+
   return (
     <div>
-      <div className=" mouse-cursor-gradient-tracking cursor-default overflow-auto font-sans">
-        <div className=" mx-16 my-20 flex h-[100vh] items-center gap-32 ">
-          <div className="sticky left-0 top-0 flex flex-col  gap-8 self-start">
+      <div className=" mouse-cursor-gradient-tracking cursor-default  font-sans">
+        <div className=" relative mx-16 flex items-center  gap-32  ">
+          <div className="sticky top-[0] flex h-[100vh] flex-col justify-between gap-8 self-start py-20 2xl:py-60 ">
             <div className="self-center">
               <StaticImage
                 src="../../static/R2.png"
@@ -30,7 +62,7 @@ const IndexPage = () => {
               <div>Fullstack Developer</div>
             </div>
 
-            <NavBar />
+            <NavBar tab={tab} setTab={setTab} />
             <div className="flex gap-4">
               <svg
                 class="h-6 w-6 text-white opacity-50 hover:opacity-100"
@@ -82,27 +114,22 @@ const IndexPage = () => {
               </div>
             </div>
           </div>
-          <div className=" ml-auto flex flex-col text-[20px]">
-            <div id="about" className="h-[100vh]">
+
+          <div className=" ml-auto flex flex-col py-40 text-[20px]">
+            <div ref={aboutRef} className="h-[100vh]">
               {' '}
               I started my programming journey with CS50 course from harvard and self learning.
               After one year i got my first job and I have been working or freelancing ever since
               which is a bit above 2 years. I will also finish my bachelors degree in computer
               science in this year
             </div>{' '}
-            <div id="about" className="h-[100vh]">
+            <div ref={experienceRef} className="h-[100vh]">
               {' '}
-              I started my programming journey with CS50 course from harvard and self learning.
-              After one year i got my first job and I have been working or freelancing ever since
-              which is a bit above 2 years. I will also finish my bachelors degree in computer
-              science in this year
+              xd
             </div>{' '}
-            <div id="about" className="h-[100vh]">
+            <div ref={portfolioRef} className="h-[100vh]">
               {' '}
-              I started my programming journey with CS50 course from harvard and self learning.
-              After one year i got my first job and I have been working or freelancing ever since
-              which is a bit above 2 years. I will also finish my bachelors degree in computer
-              science in this year
+              wp
             </div>{' '}
           </div>
         </div>
